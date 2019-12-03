@@ -19,6 +19,9 @@ import VueMoment from 'vue-moment'
 import handleErrors from './helpers/handleErrors'
 import "izitoast/dist/css/iziToast.css";
 
+//Importing configurations
+import CONFIG from '../public/config.json'
+
 Vue.use(VueIziToast);
 
 Vue.use(VueMoment)
@@ -40,7 +43,7 @@ Vue.mixin({
     data(){
         return {
             APIHosts : {
-                art : 'http://localhost/api/v1'
+                art : `${CONFIG.api.protocol}://${CONFIG.api.host}:${CONFIG.api.port}/api/${CONFIG.api.version}`
             },
             messageStr: 'Hello'
         }
