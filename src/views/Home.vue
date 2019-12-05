@@ -26,7 +26,7 @@
     <section class="search-results">
         <div class="container-fluid px-5">
             <div class="row d-flex justify-content-center py-5">
-                    <div v-if="patients[0] !== undefined && searchParameter != ''" class="alert alert-info" role="alert">
+                    <div v-if="patients[0] !== undefined && !showResultsNotFoundFlash" class="alert alert-info" role="alert">
                              
                             <span class="alert-link">
                                 {{patients.length}}  Patients Matching {{this.searchParameter}} Search.
@@ -36,7 +36,7 @@
                                 Add New Patient
                             </button>
                     </div>
-                    <div v-if="patients[0] === undefined && searchParameter != ''" class="alert text-align-center alert-warning" role="alert">
+                    <div v-if="showResultsNotFoundFlash" class="alert text-align-center alert-warning" role="alert">
                         <h4 class="alert-heading">No Patient found  matching <strong>{{this.searchParameter}}</strong> Search</h4>
                         <p class="mb-3">
                             Click on the button below to add a new Patient
@@ -347,8 +347,13 @@ export default {
             this.patients = []
 
             if(this.searchParameter !== '' && this.searchParameter !== undefined){
+                this.showResultsNotFoundFlash = false
                 const {data: {data}} = await authResource().post(endpoint, payload)
                 this.patients = data
+                if(this.patients[0] === undefined){
+                    this.showResultsNotFoundFlash = true
+                }
+
             }
             else{
                 this.clearPatients()
@@ -908,7 +913,8 @@ export default {
             watchRegStart: false,
             isSoldier: 0,
             patients: [],
-            searchParameter: ''
+            searchParameter: '',
+            showResultsNotFoundFlash: false
         }
     },
     computed: {
