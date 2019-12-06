@@ -13,7 +13,6 @@
     </section>
     <section class="sticky-top bg-default">
         <div class="container">
-
             <div class="row  py-2">
                 <form v-on:submit.prevent="search" class="search-form form-inline my-2 my-lg-0 d-flex justify-content-center align-self-center w-100">
                     <input v-model="searchParameter" class="form-control mr-sm-2 py-4" style="width: 30% !important" type="search" placeholder="Search for Patient" aria-label="Search">
@@ -22,7 +21,9 @@
             </div>
 
         </div>
-        
+         <div v-if="showProgressSpinner">
+            <img class="spinner" src="/images/spiner.gif" /> Fetching patients ... 
+        </div>
     </section>
     <section class="search-results">
         <div class="container-fluid px-5">
@@ -73,7 +74,7 @@
                             </thead>
                             <tbody>
                               <tr v-for="(patient, index) in patients" v-bind:key="index">
-                                <th scope="row">{{ patient.artNumber === null ? 'Unregistered' : patient.fullArtNumber}}</th>
+                                <th scope="row">{{ patient.artNumber === null ? 'Unregistered' : patient.artNumber}}</th>
                                 <td>{{ patient.person.personName.given}}</td>
                                 <td>{{ patient.person.personName.middle}}</td>
                                 <td>{{ patient.person.personName.family}}</td>
@@ -320,6 +321,13 @@
         </b-modal>
     </div>
 </template>
+<style scoped>
+    .spinner{
+        width: 40px;
+        margin-left: 2%;
+        padding: 0;
+    }
+</style>
 
 <script>
 import { notificationSystem, compareDates, matchString, validateDate } from '../globals'
@@ -349,6 +357,7 @@ export default {
             'setRegistrationData'
         ]),
         async search(e){
+            this.showProgressSpinner = true
             let payload = { search : this.searchParameter }
             let endpoint = `${this.APIHosts.art}/${this.BASE_URL}`;
 
@@ -358,16 +367,18 @@ export default {
                 this.showResultsNotFoundFlash = false
                 const {data: {data}} = await authResource().post(endpoint, payload)
                 this.patients = data
+                console.log(data)
                 if(this.patients[0] === undefined){
                     this.showResultsNotFoundFlash = true
                 }else{
                     this.searchedString = this.searchParameter
                 }
-
+                this.showProgressSpinner = false
             }
             else{
                 this.clearPatients()
                 this.patients = []
+                this.showProgressSpinner = false
             }
         },
         debounce(fn, delay) {
@@ -925,7 +936,8 @@ export default {
             patients: [],
             searchParameter: '',
             showResultsNotFoundFlash: false,
-            searchedString: ''
+            searchedString: '',
+            showProgressSpinner: false
         }
     },
     computed: {
