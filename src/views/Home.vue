@@ -13,6 +13,7 @@
     </section>
     <section class="sticky-top bg-default">
         <div class="container">
+
             <div class="row  py-2">
                 <form v-on:submit.prevent="search" class="search-form form-inline my-2 my-lg-0 d-flex justify-content-center align-self-center w-100">
                     <input v-model="searchParameter" class="form-control mr-sm-2 py-4" style="width: 30% !important" type="search" placeholder="Search for Patient" aria-label="Search">
@@ -29,7 +30,7 @@
                     <div v-if="patients[0] !== undefined && !showResultsNotFoundFlash" class="alert alert-info" role="alert">
                              
                             <span class="alert-link">
-                                {{patients.length}}  Patients Matching {{this.searchParameter}} Search.
+                                {{patients.length}}  Patients Matching {{this.searchedString}} Search.
                             </span> 
                             Did not find who you were looking for? 
                             <button type="button" class="btn btn-success btn-lg" @click="activatePatientForm" v-b-modal.modal-1>
@@ -37,7 +38,14 @@
                             </button>
                     </div>
                     <div v-if="showResultsNotFoundFlash" class="alert text-align-center alert-warning" role="alert">
-                        <h4 class="alert-heading">No Patient found  matching <strong>{{this.searchParameter}}</strong> Search</h4>
+                        <div class="custom-close-btn">
+                            <button type="button" class="close" @click="showResultsNotFoundFlash = false" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <br/>
+                        <hr/>
+                        <h4 class="alert-heading">No Patient found  matching <strong>{{this.searchedString}}</strong> Search</h4>
                         <p class="mb-3">
                             Click on the button below to add a new Patient
                         </p>
@@ -352,6 +360,8 @@ export default {
                 this.patients = data
                 if(this.patients[0] === undefined){
                     this.showResultsNotFoundFlash = true
+                }else{
+                    this.searchedString = this.searchParameter
                 }
 
             }
@@ -914,7 +924,8 @@ export default {
             isSoldier: 0,
             patients: [],
             searchParameter: '',
-            showResultsNotFoundFlash: false
+            showResultsNotFoundFlash: false,
+            searchedString: ''
         }
     },
     computed: {
