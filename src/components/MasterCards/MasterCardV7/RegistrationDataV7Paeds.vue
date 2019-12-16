@@ -5,7 +5,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text reg-details">ART Reg no</span>
                 </div>
-                <input type="text" class="form-control" v-model="patient.fullArtNumber" disabled>
+                <input type="text" class="form-control" v-model="patient.artNumber" disabled>
             </div>
         </div>
         <div class="col-1">

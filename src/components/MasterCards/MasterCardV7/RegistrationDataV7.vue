@@ -5,7 +5,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text reg-details">ART Reg no</span>
                     </div>
-                    <input type="text" class="form-control tb-form" v-model="patient.fullArtNumber" @click="editARTNumber" @focus="editARTNumber" @change="restoreARTNumber" @blur="updateARTNumber">
+                    <input type="text" class="form-control tb-form" v-model="patient.artNumber" @click="editARTNumber" @focus="editARTNumber" @change="restoreARTNumber" @blur="updateARTNumber">
                 </div>
             </div>
             <div class="col-2" v-if="isAdults">
