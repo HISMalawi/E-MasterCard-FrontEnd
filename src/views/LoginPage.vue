@@ -18,6 +18,8 @@
             <h6 class="text-center my-3">V3.5 September 10, 2019</h6>
             
         </div>
+
+        <h7 id="tagVersion" > github tag {{tagVersion}}</h7>
     </div>
 </template>
 
@@ -25,11 +27,29 @@
 
     import LoginForm from  '@/components/LoginForm'
 
+    import GIT from "../globals/git"
+
     export default {
         name: 'LoginPage',
 
         components : {
             LoginForm
+        },
+        data: ()=>{
+            return {
+                tagVersion : ""
+            }
+        },  
+        mounted(){
+            this.tagVersion = GIT.tag();
+
         }
     }
 </script>
+<style scoped>
+    #tagVersion{
+        position: absolute;
+        bottom: 2%;
+        right: 2%;
+    }
+</style>
