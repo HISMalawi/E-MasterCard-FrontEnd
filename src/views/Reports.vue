@@ -160,6 +160,9 @@
                                         <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                                             <b-card-body>
                                                 <div>
+                                                    <div v-if="showCummulativeProgress">
+                                                        <img class="spinner" src="/images/spiner.gif" /> Loading Data ... 
+                                                    </div>
                                                     <form v-on:submit.prevent="loadCumulativeAgeDisaggregates">
                                                         <div class="form-row">
                                                             <div class="col-md-6">
@@ -174,6 +177,7 @@
                                                                 <button class="btn btn-success" type="submit">Run Report</button>
                                                             </div>
                                                         </div>
+
                                                     </form>
                                                 </div>
 
@@ -639,6 +643,9 @@
                                         <b-collapse id="accordion2" visible accordion="my-accordion" role="tabpanel">
                                             <b-card-body>
                                                 <div>
+                                                    <div v-if="showQuarterySpinner">
+                                                        <img class="spinner" src="/images/spiner.gif" /> Loading Data ... 
+                                                    </div>
                                                     <form v-on:submit.prevent="loadQuarterlyAgeDisaggregates">
                                                         <div class="form-row">
                                                             <div class="col-4 pr-0 pl-1">
@@ -1471,26 +1478,30 @@ export default {
 
         loadCumulativeAgeDisaggregates (){
             this.isLoading = true
-
+            this.showCummulativeProgress = true
             const endpoint = `${this.APIHosts.art}/${this.BASE_URL_DISAGG}?code=1&reportStartDate=${null}&reportEndDate=${this.cumulativeEndDate}`
-
+        
             authResource().get(endpoint)
                 .then((response)=>{
                     this.isLoading = false
+                    
+                    console.log("Begin", response.data.data.total);
                     this.cumulativeDisaggregates = response.data.data
+                    this.showCummulativeProgress = false;
                 })
                 .catch((error)=> console.warn(error))
         },
 
         loadQuarterlyAgeDisaggregates (){
             this.isLoading = true
-
+            this.showQuarterySpinner =true;
             const endpoint = `${this.APIHosts.art}/${this.BASE_URL_DISAGG}?code=2&reportStartDate=${this.quarterlyStartDate}&reportEndDate=${this.quarterlyEndDate}`
 
             authResource().get(endpoint)
                 .then((response)=>{
                     this.isLoading = false
                     this.quarterlyDisaggregates = response.data.data
+                    this.showQuarterySpinner =false;
                 })
                 .catch((error)=> console.warn(error))
         },
@@ -1587,7 +1598,8 @@ export default {
             transOut: {},
             died: {},
             lt1: '<1',
-
+            showCummulativeProgress: false,
+            showQuarterySpinner: false,
             payloads: {
                 dueAfterYear: {
                     code: 1,
@@ -1742,3 +1754,14 @@ export default {
 
 }
 </script>
+<style scoped>
+     .visit-table th {
+         text-align: right;
+         padding-right: 2em;
+     }
+    .spinner{
+        width: 40px;
+        margin-left: 2%;
+        padding: 0;
+    }
+</style>
