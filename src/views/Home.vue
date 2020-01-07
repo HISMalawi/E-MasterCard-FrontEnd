@@ -21,9 +21,7 @@
             </div>
 
         </div>
-         <div v-if="showProgressSpinner">
-            <img class="spinner" src="/images/spiner.gif" /> Fetching patients ... 
-        </div>
+        <progress-spiner v-if="showProgressSpinner"> Fetching patients ...  </progress-spiner>
     </section>
     <section class="search-results">
         <div class="container-fluid px-5">
@@ -337,10 +335,11 @@ import { constants } from 'crypto';
 import { mapGetters, mapActions } from 'vuex' 
 import { match } from 'minimatch';
 import { debuglog } from 'util';
+import ProgressSpiner from "../components/Globals/ProgressSpiner";
 
 export default {
     name: 'Home',
-    components: {NavBar},
+    components: {NavBar,ProgressSpiner},
     methods: {
         ...mapActions([
             'searchPatients', 

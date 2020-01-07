@@ -160,9 +160,7 @@
                                         <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                                             <b-card-body>
                                                 <div>
-                                                    <div v-if="showCummulativeProgress">
-                                                        <img class="spinner" src="/images/spiner.gif" /> Loading Data ... 
-                                                    </div>
+                                                    <progress-spiner v-if="showCummulativeProgress"> Loading Data ... </progress-spiner>
                                                     <form v-on:submit.prevent="loadCumulativeAgeDisaggregates">
                                                         <div class="form-row">
                                                             <div class="col-md-6">
@@ -631,7 +629,9 @@
                                                     </tbody>
                                                 </table>
                                                 <div class="alert alert-primary" role="alert">
-                                                    Download the excel sheet  <span v-on:click="downloadAgeDisaggregatedReport(1, null, null, cumulativeEndDate)" class="alert-link">HERE</span>
+                                                    <progress-spiner v-if="downloadAgeDisaggregatedReport1"> Downloading report ... </progress-spiner>
+                                                    <button v-on:click="downloadAgeDisaggregatedReport(1, null, null, cumulativeEndDate)" class="btn btn-primary pull-right">Download the excel sheet HERE</button>
+
                                                 </div>
                                             </b-card-body>
                                         </b-collapse>
@@ -643,9 +643,7 @@
                                         <b-collapse id="accordion2" visible accordion="my-accordion" role="tabpanel">
                                             <b-card-body>
                                                 <div>
-                                                    <div v-if="showQuarterySpinner">
-                                                        <img class="spinner" src="/images/spiner.gif" /> Loading Data ... 
-                                                    </div>
+                                                    <progress-spiner v-if="showQuarterySpinner"> Loading Data ... </progress-spiner>
                                                     <form v-on:submit.prevent="loadQuarterlyAgeDisaggregates">
                                                         <div class="form-row">
                                                             <div class="col-4 pr-0 pl-1">
@@ -1199,7 +1197,8 @@
                                                     </tbody>
                                                 </table>
                                                 <div class="alert alert-primary" role="alert">
-                                                    Download the excel sheet  <span v-on:click="downloadAgeDisaggregatedReport(2)" class="alert-link">HERE</span>
+                                                    <progress-spiner v-if="downloadAgeDisaggregatedReport2"> Downloading report ... </progress-spiner>
+                                                    <button v-on:click="downloadAgeDisaggregatedReport(2)" class="btn btn-primary">Download the excel sheet HERE</button>
                                                 </div>
                                             </b-card-body>
                                         </b-collapse>
@@ -1255,13 +1254,14 @@
 <script>
 
 import NavBar from "./NavBar";
-import {authResource} from './../authResource'
-import { countAll, loadAll } from './reports.utils'
+import {authResource} from './../authResource';
+import { countAll, loadAll } from './reports.utils';
+import ProgressSpiner from "../components/Globals/ProgressSpiner";
 
 
 export default {
     name: 'Reports',
-    components: {NavBar},
+    components: {NavBar,ProgressSpiner},
     methods: {
         setPatient(patient)
         {
@@ -1484,8 +1484,6 @@ export default {
             authResource().get(endpoint)
                 .then((response)=>{
                     this.isLoading = false
-                    
-                    console.log("Begin", response.data.data.total);
                     this.cumulativeDisaggregates = response.data.data
                     this.showCummulativeProgress = false;
                 })
@@ -1506,6 +1504,11 @@ export default {
                 .catch((error)=> console.warn(error))
         },
         downloadAgeDisaggregatedReport (code){
+            if(code == 1){
+                this.downloadAgeDisaggregatedReport1 = true
+            }else if(code == 2){
+                this.downloadAgeDisaggregatedReport2 = true
+            }
             let title = ''
             let startDate = null
             let endDate = null
@@ -1551,7 +1554,8 @@ export default {
                     a.click()
                     a.remove()
                 })
-
+            this.downloadAgeDisaggregatedReport1 =false
+            this.downloadAgeDisaggregatedReport2 = false
         },
     },
      created(){
@@ -1600,6 +1604,8 @@ export default {
             lt1: '<1',
             showCummulativeProgress: false,
             showQuarterySpinner: false,
+            downloadAgeDisaggregatedReport1: false,
+            downloadAgeDisaggregatedReport2: false,
             payloads: {
                 dueAfterYear: {
                     code: 1,
