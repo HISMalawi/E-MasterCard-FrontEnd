@@ -17,6 +17,7 @@
     "bootstrap-4-grid": "^2.4.1",
     "bootstrap-vue": "^2.0.0-rc.16",
     "font-awesome": "^4.7.0",
+    "isomorphic-git": "^0.72.0",
     "jquery": "^3.4.1",
     "js-file-download": "^0.4.5",
     "lodash": "^4.17.11",
