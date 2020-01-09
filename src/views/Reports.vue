@@ -156,6 +156,7 @@
                                     <b-card no-body class="mb-2 w-100">
                                         <b-card-header header-tag="header" class="p-1" role="tab">
                                             <b-button block v-b-toggle="'accordion1'" variant="info"><h4>Cumulative Age Disaggregated Report</h4></b-button>
+                                            <json-export :jsonData ="cummulativeJson"></json-export>
                                         </b-card-header>
                                         <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
                                             <b-card-body>
@@ -1257,11 +1258,11 @@ import NavBar from "./NavBar";
 import {authResource} from './../authResource';
 import { countAll, loadAll } from './reports.utils';
 import ProgressSpiner from "../components/Globals/ProgressSpiner";
-
+import JsonExport from "../components/Reports/JsonExport";
 
 export default {
     name: 'Reports',
-    components: {NavBar,ProgressSpiner},
+    components: {NavBar,ProgressSpiner,JsonExport},
     methods: {
         setPatient(patient)
         {
@@ -1485,9 +1486,12 @@ export default {
                 .then((response)=>{
                     this.isLoading = false
                     this.cumulativeDisaggregates = response.data.data
+                    formartCummulative();
                     this.showCummulativeProgress = false;
+
                 })
                 .catch((error)=> console.warn(error))
+            
         },
 
         loadQuarterlyAgeDisaggregates (){
@@ -1503,6 +1507,49 @@ export default {
                 })
                 .catch((error)=> console.warn(error))
         },
+        formartCummulative(){
+            this.cummulativeJson = {}
+            let fields = {
+                " "         :   "leftTitle",
+                " "         :   "ageGroups",
+                "On ART"    :   "onART",
+                "Defaulter" :   "defaulter1",
+                " "         :   "defaulter2",
+                " "         :   "defaulter3",
+                "Stopped"   :   "stopped",
+                "Died"      :   "died",
+                "Total"     :   "total"
+            }
+
+            let cummulativeData = [
+                {
+                    "leftTitle"     : " ",
+                    "ageGroups"     : " ",
+                    "onART"         : " ",
+                    "defaulter1"    : " ",
+                    "defaulter2"    : " ",
+                    "defaulter3"    : " ",
+                    "stopped"       : " ",
+                    "died"          : " ",
+                    "total"         : " "
+                }, 
+                {
+                    "leftTitle"     : " ",
+                    "ageGroups"     : " ",
+                    "onART"         : "(TX_CURR)",
+                    "defaulter1"    : "1 Month",
+                    "defaulter2"    : "2 Months",
+                    "defaulter3"    : "3+ Months",
+                    "stopped"       : " ",
+                    "died"          : " ",
+                    "total"         : " "
+                }
+            ]
+            this.cummulativeJson["fields"] = fields
+            this.cummulativeJson["data"] = cummulativeData;
+            //this. cumulativeDisaggregates ;
+        }
+        ,
         downloadAgeDisaggregatedReport (code){
             if(code == 1){
                 this.downloadAgeDisaggregatedReport1 = true
@@ -1576,6 +1623,7 @@ export default {
         this.countTransIn()
         this.countTransOut()
         this.countDied()
+        this.formartCummulative();
     },
     data: () => {
         return {
@@ -1606,6 +1654,7 @@ export default {
             showQuarterySpinner: false,
             downloadAgeDisaggregatedReport1: false,
             downloadAgeDisaggregatedReport2: false,
+            cummulativeJson:{},
             payloads: {
                 dueAfterYear: {
                     code: 1,

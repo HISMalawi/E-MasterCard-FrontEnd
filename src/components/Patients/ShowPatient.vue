@@ -93,7 +93,6 @@
             ...mapActions(['createPatientCard', 'mutatePatientCard']),
             getMasterCards(){
                 let dhisAPIEndpoint = `${this.APIHosts.art}/master-cards`;
-
                 authResource().get(dhisAPIEndpoint)
                     .then(async (response)=>{
                         this.availableMasterCards = await response.data.data
@@ -154,6 +153,7 @@
             availableMasterCards : function (value) {
                
                 let dhisAPIEndpoint = `${this.APIHosts.art}/${this.BASE_URL}/${this.patient.patientID}/cards`;
+                 console.log("Break", dhisAPIEndpoint);
 
                 authResource().get(dhisAPIEndpoint)
                     .then(({data: {data}})=>{
@@ -172,6 +172,8 @@
                     if (!patientVersions.includes(name))
                         return name
                 })
+
+                console.log("Break",this.masterCardsToShow)
             }
         },
         computed: {
