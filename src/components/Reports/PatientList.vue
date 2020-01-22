@@ -3,14 +3,20 @@
 
         <table id="patient-list-table" v-if="patients.length > 0">
                 <tr>
-                    <th  v-for="(column, index) in Object.keys(patients[0])" v-bind:key="index">
-                        {{column}}
-                    </th>                
+                    <th>#</th>
+                    <th  v-for="(column, i) in Object.keys(patients[0])" v-bind:key="i">
+                        {{humanize(column)}}
+                    </th>
+                    <!-- <th></th>               -->
                 </tr>
-                <tr v-for="(patient, index) in patients" v-bind:key="index">
-                    <td  v-for="(column, index) in Object.keys(patients[0])" v-bind:key="index">
+                <tr v-for="(patient, i) in patients" v-bind:key="i">
+                    <td>{{i + 1}}</td>
+                    <td  v-for="(column, j) in Object.keys(patients[0])" v-bind:key="j">
                         {{patient[column]}}
                     </td> 
+                    <!-- <td>
+                        <button class="btn btn-primary">View</button>
+                    </td> -->
                 </tr>
         </table>
          <p v-if="showResponse"> No patients here...</p>
@@ -37,7 +43,12 @@ export default {
       }
   },
   methods: {
-
+      humanize: (str) =>{
+           return str
+        .replace(/^[\s_]+|[\s_]+$/g, '')
+        .replace(/[_\s]+/g, ' ')
+        .replace(/^[a-z]/, function(m) { return m.toUpperCase(); });
+      }
   },
   mounted(){
          let reportParams =this.reportParams;
@@ -46,7 +57,14 @@ export default {
          let endpoint = `${CONFIG.api.protocol}://${CONFIG.api.host}:${CONFIG.api.port}/api/${CONFIG.api.version}/reports/age-disaggregates-patient-list?type=${reportParams.type}&code=${reportParams.code}&reportStartDate=${reportParams.reportStartDate}&reportEndDate=${reportParams.reportEndDate}`
          authResource().get(endpoint)
                 .then((response)=>{                    
-                    this.patients = response.data.data[reportParams.type];
+                    this.patients = response.data.data[reportParams.type].sort(function(a, b){
+                        var keyA = new Date(a.arv_number),
+                            keyB = new Date(b.arv_number);
+                        // Compare the 2 dates
+                        if(keyA < keyB) return -1;
+                        if(keyA > keyB) return 1;
+                        return 0;
+                    });
                     this.showProgressSpinner = false;
                     if(this.patients==undefined || this.patients.length == 0){
                         this.showResponse = true;
