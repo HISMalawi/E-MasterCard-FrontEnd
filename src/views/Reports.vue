@@ -208,13 +208,13 @@
                                                     <tr>
                                                         <th>TOTAL</th>
                                                         <th></th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['defaulted1Month']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['defaulted2Months']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['defaulted3MonthsPlus']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['stopped']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['died']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['transferredOut']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('txCurrent')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['txCurrent']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('defaulted1Month')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['defaulted1Month']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('defaulted2Months')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['defaulted2Months']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('defaulted3MonthsPlus')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['defaulted3MonthsPlus']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('stopped')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['stopped']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('died')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['died']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('transferredOut')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['transferredOut']['total']}}</th>
                                                         <th>{{cumulativeDisaggregates['txCurrent']['total']+cumulativeDisaggregates['defaulted1Month']['total']+cumulativeDisaggregates['defaulted2Months']['total']+cumulativeDisaggregates['defaulted3MonthsPlus']['total']+cumulativeDisaggregates['stopped']['total']+cumulativeDisaggregates['died']['total']+cumulativeDisaggregates['transferredOut']['total']}}</th>
                                                     </tr>
                                                     <tr>
@@ -708,15 +708,15 @@
                                                     <tr>
                                                         <th>TOTAL</th>
                                                         <th></th>
-                                                        <th>{{quarterlyDisaggregates['txNew']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['reInitiated']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['transferredIn']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['defaulted1MonthPlus']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['defaulted2MonthsPlus']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['defaulted3MonthsPlus']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['stopped']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['died']['total']}}</th>
-                                                        <th>{{quarterlyDisaggregates['transferredOut']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('txNew')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['txNew']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('reInitiated')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['reInitiated']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('transferredIn')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['transferredIn']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('defaulted1Month')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['defaulted1MonthPlus']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('defaulted2Months')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['defaulted2MonthsPlus']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('defaulted3MonthsPlus')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['defaulted3MonthsPlus']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('stopped')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['stopped']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('died')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['died']['total']}}</th>
+                                                        <th @click="showDrillDownQuartery('transferredOut')" v-b-modal.modal-patient-list >{{quarterlyDisaggregates['transferredOut']['total']}}</th>
 <!--                                                        {{&#45;&#45;        <th>{{quarterlyDisaggregates['txCurrent']['total']+quarterlyDisaggregates['defaulted1MonthPlus']['total']+quarterlyDisaggregates['defaulted2MonthsPlus']['total']+quarterlyDisaggregates['defaulted3MonthsPlus']['total']+quarterlyDisaggregates['stopped']['total']+quarterlyDisaggregates['died']['total']+quarterlyDisaggregates['transferredOut']['total']}}</th>&#45;&#45;}}-->
                                                     </tr>
                                                     <tr>
@@ -1247,7 +1247,11 @@
             </div>
         </div>
         </b-modal>
-
+        <div>
+        <b-modal id="modal-patient-list"  :title="modalTitle"  size="xl" hide-footer scrollable centered>
+            <patient-list :reportParams="dillDownParams"></patient-list>
+        </b-modal>
+</div>
     </div>
 </template>
 
@@ -1257,11 +1261,17 @@ import NavBar from "./NavBar";
 import {authResource} from './../authResource';
 import { countAll, loadAll } from './reports.utils';
 import ProgressSpiner from "../components/Globals/ProgressSpiner";
-
+//import JsonExport from "../components/Reports/JsonExport";
+import PatientList from "../components/Reports/PatientList";
 
 export default {
     name: 'Reports',
-    components: {NavBar,ProgressSpiner},
+    components: {NavBar,ProgressSpiner,PatientList},
+    watch:{
+        modalTitle: ()=>{
+            return "Patient List for " + this.dillDownParams.type;
+        }
+    },
     methods: {
         setPatient(patient)
         {
@@ -1481,19 +1491,28 @@ export default {
             this.showCummulativeProgress = true
             const endpoint = `${this.APIHosts.art}/${this.BASE_URL_DISAGG}?code=1&reportStartDate=${null}&reportEndDate=${this.cumulativeEndDate}`
         
+            this.dillDownCummulativeParams["reportEndDate"] = `${this.cumulativeEndDate}`;
+            this.dillDownCummulativeParams["code"] = 1
+            this.dillDownCummulativeParams["reportStartDate"] = `${null}`;
             authResource().get(endpoint)
                 .then((response)=>{
                     this.isLoading = false
                     this.cumulativeDisaggregates = response.data.data
                     this.showCummulativeProgress = false;
+
                 })
                 .catch((error)=> console.warn(error))
+            
         },
 
         loadQuarterlyAgeDisaggregates (){
             this.isLoading = true
             this.showQuarterySpinner =true;
             const endpoint = `${this.APIHosts.art}/${this.BASE_URL_DISAGG}?code=2&reportStartDate=${this.quarterlyStartDate}&reportEndDate=${this.quarterlyEndDate}`
+            
+            this.dillDownQuarteryParams["reportEndDate"] = `${this.quarterlyEndDate}`;
+            this.dillDownQuarteryParams["code"] = 2
+            this.dillDownQuarteryParams["reportStartDate"] = `${this.quarterlyStartDate}`;
 
             authResource().get(endpoint)
                 .then((response)=>{
@@ -1557,6 +1576,16 @@ export default {
             this.downloadAgeDisaggregatedReport1 =false
             this.downloadAgeDisaggregatedReport2 = false
         },
+        showDrillDownCummulative(type,gender=null){
+            this.dillDownParams = this.dillDownCummulativeParams;
+            this.dillDownParams["type"] = type;
+            this.dillDownParams["reportTitle"] = "Cummulative Age Disaggregated Report";
+        },
+        showDrillDownQuartery(type){
+            this.dillDownParams = this.dillDownQuarteryParams;
+            this.dillDownParams["type"] = type;
+            this.dillDownParams["reportTitle"] = "Cummulative Age Disaggregated Report";
+        }
     },
      created(){
         this.loadPatientDueViralCount()
@@ -1576,6 +1605,7 @@ export default {
         this.countTransIn()
         this.countTransOut()
         this.countDied()
+        this.formartCummulative();
     },
     data: () => {
         return {
@@ -1606,6 +1636,10 @@ export default {
             showQuarterySpinner: false,
             downloadAgeDisaggregatedReport1: false,
             downloadAgeDisaggregatedReport2: false,
+            cummulativeJson:{},
+            dillDownQuarteryParams:{},
+            dillDownCummulativeParams:{},
+            dillDownParams: {},
             payloads: {
                 dueAfterYear: {
                     code: 1,
