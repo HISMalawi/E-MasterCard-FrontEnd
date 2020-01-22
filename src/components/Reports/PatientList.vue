@@ -67,7 +67,7 @@ export default {
 <style scoped>
     #patient-list-table{
         font-size: 0.8em !important;
-        width: 100px;
+        width: 100%;
     }
 
     #patient-list-table tr:nth-child(even) {
@@ -76,10 +76,12 @@ export default {
     #patient-list-table th {
         background-color: aliceblue;
         border-bottom: 1px solid rgb(175, 173, 173);
+        padding: 1em;
     }
 
     #patient-list-table td {     
         border-bottom: 1px solid rgb(175, 173, 173);
+        padding: 1em;
 
     }
     
