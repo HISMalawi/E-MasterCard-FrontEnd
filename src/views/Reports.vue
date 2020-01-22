@@ -215,7 +215,7 @@
                                                         <th @click="showDrillDownCummulative('stopped')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['stopped']['total']}}</th>
                                                         <th @click="showDrillDownCummulative('died')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['died']['total']}}</th>
                                                         <th @click="showDrillDownCummulative('transferredOut')" v-b-modal.modal-patient-list >{{cumulativeDisaggregates['transferredOut']['total']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['total']+cumulativeDisaggregates['defaulted1Month']['total']+cumulativeDisaggregates['defaulted2Months']['total']+cumulativeDisaggregates['defaulted3MonthsPlus']['total']+cumulativeDisaggregates['stopped']['total']+cumulativeDisaggregates['died']['total']+cumulativeDisaggregates['transferredOut']['total']}}</th>
+                                                        <th @click="showDrillDownCummulative('everRegistared')" v-b-modal.modal-patient-list>{{cumulativeDisaggregates['everRegistared']['total']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Adults</th>
@@ -227,7 +227,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['count']+cumulativeDisaggregates['defaulted1Month']['adults']['count']+cumulativeDisaggregates['defaulted2Months']['adults']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['count']+cumulativeDisaggregates['stopped']['adults']['count']+cumulativeDisaggregates['died']['adults']['count']+cumulativeDisaggregates['transferredOut']['adults']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Males</th>
@@ -239,7 +239,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['count']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['count']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['count']+cumulativeDisaggregates['stopped']['adults']['males']['count']+cumulativeDisaggregates['died']['adults']['males']['count']+cumulativeDisaggregates['transferredOut']['adults']['males']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['count']}}</th>
                                                     </tr>
                                                    <tr>
                                                         <th></th>
@@ -251,7 +251,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['15-19']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['15-19']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['15-19']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['15-19']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['15-19']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -263,7 +263,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['20-24']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['20-24']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['20-24']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['20-24']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['20-24']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -275,7 +275,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['25-29']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['25-29']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['25-29']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['25-29']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['25-29']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -288,7 +288,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['30-34']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['30-34']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['30-34']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['30-34']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['30-34']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -301,7 +301,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['35-39']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['35-39']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['35-39']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['35-39']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['35-39']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -314,7 +314,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['40-44']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['40-44']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['40-44']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['40-44']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['40-44']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -327,7 +327,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['45-49']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['45-49']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['45-49']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['45-49']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['45-49']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -339,8 +339,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['50+']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['50+']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['50+']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted1Month']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted2Months']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['stopped']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['died']['adults']['males']['disaggregatedByAge']['50+']+cumulativeDisaggregates['transferredOut']['adults']['males']['disaggregatedByAge']['50+']}}</th>
-                                                    </tr>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['males']['disaggregatedByAge']['50+']}}</th>                                                    </tr>
 
                                                     <tr>
                                                         <th>Females</th>
@@ -352,7 +351,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['count']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['count']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['count']+cumulativeDisaggregates['stopped']['adults']['females']['count']+cumulativeDisaggregates['died']['adults']['females']['count']+cumulativeDisaggregates['transferredOut']['adults']['females']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -364,7 +363,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['15-19']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['15-19']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['15-19']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['15-19']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['15-19']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['15-19']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -376,7 +375,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['20-24']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['20-24']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['20-24']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['20-24']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['20-24']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['20-24']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -388,7 +387,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['25-29']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['25-29']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['25-29']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['25-29']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['25-29']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['25-29']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -401,7 +400,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['30-34']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['30-34']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['30-34']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['30-34']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['30-34']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['30-34']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -414,7 +413,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['35-39']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['35-39']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['35-39']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['35-39']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['35-39']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['35-39']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -427,7 +426,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['40-44']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['40-44']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['40-44']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['40-44']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['40-44']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['40-44']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -440,7 +439,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['45-49']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['45-49']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['45-49']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['45-49']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['45-49']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['45-49']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -452,7 +451,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['50+']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['50+']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['50+']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted1Month']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted2Months']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['defaulted3MonthsPlus']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['stopped']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['died']['adults']['females']['disaggregatedByAge']['50+']+cumulativeDisaggregates['transferredOut']['adults']['females']['disaggregatedByAge']['50+']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['adults']['females']['disaggregatedByAge']['50+']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -465,7 +464,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['count']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['count']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['count']+cumulativeDisaggregates['stopped']['pediatrics']['count']+cumulativeDisaggregates['died']['pediatrics']['count']+cumulativeDisaggregates['transferredOut']['pediatrics']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Males</th>
@@ -477,7 +476,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['males']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['males']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['males']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['males']['count']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['males']['count']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['males']['count']+cumulativeDisaggregates['stopped']['pediatrics']['males']['count']+cumulativeDisaggregates['died']['pediatrics']['males']['count']+cumulativeDisaggregates['transferredOut']['pediatrics']['males']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['males']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -489,7 +488,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge'][lt1]}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge'][lt1]}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge'][lt1]}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted1Month']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge'][lt1]}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['males']['disaggregatedByAge'][lt1]}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -501,7 +500,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['1-4']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['1-4']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['1-4']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['1-4']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['males']['disaggregatedByAge']['1-4']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -513,7 +512,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['5-9']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['5-9']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['5-9']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['5-9']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['males']['disaggregatedByAge']['5-9']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -526,7 +525,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['10-14']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['10-14']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['10-14']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['stopped']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['died']['pediatrics']['males']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['transferredOut']['pediatrics']['males']['disaggregatedByAge']['10-14']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['males']['disaggregatedByAge']['10-14']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -539,7 +538,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['females']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['females']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['females']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['females']['count']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['females']['count']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['females']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['females']['count']+cumulativeDisaggregates['stopped']['pediatrics']['females']['count']+cumulativeDisaggregates['died']['pediatrics']['females']['count']+cumulativeDisaggregates['transferredOut']['pediatrics']['females']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['females']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -551,7 +550,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge'][lt1]}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge'][lt1]}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge'][lt1]}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted1Month']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted2Months']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge'][lt1]+cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge'][lt1]}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['females']['disaggregatedByAge'][lt1]}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -563,7 +562,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['1-4']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['1-4']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['1-4']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['1-4']+cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['1-4']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['females']['disaggregatedByAge']['1-4']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
@@ -575,7 +574,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['5-9']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['5-9']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['5-9']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['females']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['females']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['males']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['females']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['5-9']+cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['5-9']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['females']['disaggregatedByAge']['5-9']}}</th>
                                                     </tr>
 
                                                     <tr>
@@ -588,7 +587,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['10-14']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['10-14']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['10-14']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted1Month']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted2Months']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['defaulted3MonthsPlus']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['stopped']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['died']['pediatrics']['females']['disaggregatedByAge']['10-14']+cumulativeDisaggregates['transferredOut']['pediatrics']['females']['disaggregatedByAge']['10-14']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['pediatrics']['females']['disaggregatedByAge']['10-14']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Unknown Age</th>
@@ -600,7 +599,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['unknownAge']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['unknownAge']['count']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['unknownAge']['count']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['unknownAge']['count']+cumulativeDisaggregates['defaulted1Month']['unknownAge']['count']+cumulativeDisaggregates['defaulted2Months']['unknownAge']['count']+cumulativeDisaggregates['defaulted3MonthsPlus']['unknownAge']['count']+cumulativeDisaggregates['stopped']['unknownAge']['count']+cumulativeDisaggregates['died']['unknownAge']['count']+cumulativeDisaggregates['transferredOut']['unknownAge']['count']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['unknownAge']['count']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Males</th>
@@ -612,7 +611,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['unknownAge']['males']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['unknownAge']['males']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['unknownAge']['males']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['unknownAge']['males']+cumulativeDisaggregates['defaulted1Month']['unknownAge']['males']+cumulativeDisaggregates['defaulted2Months']['unknownAge']['males']+cumulativeDisaggregates['defaulted3MonthsPlus']['unknownAge']['males']+cumulativeDisaggregates['stopped']['unknownAge']['males']+cumulativeDisaggregates['died']['unknownAge']['males']+cumulativeDisaggregates['transferredOut']['unknownAge']['males']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['unknownAge']['males']}}</th>
                                                     </tr>
                                                     <tr>
                                                         <th>Females</th>
@@ -624,7 +623,7 @@
                                                         <th>{{cumulativeDisaggregates['stopped']['unknownAge']['females']}}</th>
                                                         <th>{{cumulativeDisaggregates['died']['unknownAge']['females']}}</th>
                                                         <th>{{cumulativeDisaggregates['transferredOut']['unknownAge']['females']}}</th>
-                                                        <th>{{cumulativeDisaggregates['txCurrent']['unknownAge']['females']+cumulativeDisaggregates['defaulted1Month']['unknownAge']['females']+cumulativeDisaggregates['defaulted2Months']['unknownAge']['females']+cumulativeDisaggregates['defaulted3MonthsPlus']['unknownAge']['females']+cumulativeDisaggregates['stopped']['unknownAge']['females']+cumulativeDisaggregates['died']['unknownAge']['females']+cumulativeDisaggregates['transferredOut']['unknownAge']['females']}}</th>
+                                                        <th>{{cumulativeDisaggregates['everRegistared']['unknownAge']['females']}}</th>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -1741,6 +1740,11 @@ export default {
                     pediatrics : {males : {disaggregatedByAge : {}}, females : {disaggregatedByAge : {}},},
                     unknownAge : {}
                 },transferredOut : {
+                    adults : {males : {disaggregatedByAge : {}}, females : {disaggregatedByAge : {}},},
+                    pediatrics : {males : {disaggregatedByAge : {}}, females : {disaggregatedByAge : {}},},
+                    unknownAge : {}
+                },
+                everRegistared : {
                     adults : {males : {disaggregatedByAge : {}}, females : {disaggregatedByAge : {}},},
                     pediatrics : {males : {disaggregatedByAge : {}}, females : {disaggregatedByAge : {}},},
                     unknownAge : {}
